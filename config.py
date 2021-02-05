@@ -1,0 +1,4 @@
+
+
+API_KEY = '597d7db19193a2c2605e82fb210d6328'
+LANG = 'pt_br'
