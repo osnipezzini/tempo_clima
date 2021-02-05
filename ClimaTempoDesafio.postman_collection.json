@@ -142,10 +142,6 @@
 		{
 			"key": "BASEURI",
 			"value": "http://localhost:5000"
-		},
-		{
-			"key": "APIKEY",
-			"value": "597d7db19193a2c2605e82fb210d6328"
 		}
 	]
 }
