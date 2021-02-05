@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "023599ae-6345-4c46-90d2-8308ead39569",
+		"name": "ClimaTempoDesafio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BuscarPorNome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASEURI}}/buscar?city=Blumenau",
+					"host": [
+						"{{BASEURI}}"
+					],
+					"path": [
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "Blumenau"
+						}
+					]
+				},
+				"description": "Buscar dados de previsão do tempo baseado no nome da cidade"
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarPorCodigo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASEURI}}/buscar?code=2172797",
+					"host": [
+						"{{BASEURI}}"
+					],
+					"path": [
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "2172797"
+						}
+					]
+				},
+				"description": "Buscar dados de previsão do tempo baseado no codigo da cidade"
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarPorCEP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASEURI}}/buscar?zipcode=94040",
+					"host": [
+						"{{BASEURI}}"
+					],
+					"path": [
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "zipcode",
+							"value": "94040"
+						}
+					]
+				},
+				"description": "Buscar dados de previsão do tempo baseado no CEP"
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarPorLatLon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASEURI}}/buscar?lat=-26.9194&lon=-49.0661",
+					"host": [
+						"{{BASEURI}}"
+					],
+					"path": [
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "-26.9194"
+						},
+						{
+							"key": "lon",
+							"value": "-49.0661"
+						}
+					]
+				},
+				"description": "Buscar dados de previsão do tempo baseado na latitude e longitude do local"
+			},
+			"response": []
+		},
+		{
+			"name": "VerHistoricoPesquisas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Ver histórico completo de pesquisas."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASEURI",
+			"value": "http://localhost:5000"
+		},
+		{
+			"key": "APIKEY",
+			"value": "597d7db19193a2c2605e82fb210d6328"
+		}
+	]
+}
