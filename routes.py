@@ -1,6 +1,6 @@
 from urllib.error import HTTPError
 
-from flask import request, Blueprint
+from flask import request, Blueprint, render_template
 
 from models import Clima, Historico
 from serializers import ClimaSerializer, HistoricoSerializer
@@ -17,19 +17,7 @@ def buscar_clima():
     try:
         data = service.get(args)
         serializer = ClimaSerializer()
-        model = Clima()
-        model.sensacao_termica = data['main']['feels_like']
-        model.temperatura = data['main']['temp']
-        model.temperatura_minima = data['main']['temp_min']
-        model.temperatura_maxima = data['main']['temp_max']
-        model.cidade = data['name']
-        model.pressao = data['main']['pressure']
-        model.umidade = data['main']['humidity']
-        model.latitude = data['coord']['lat']
-        model.longitude = data['coord']['lon']
-        model.cod_cidade = data['id']
-        model.visibilidade = data['visibility']
-        model.velocidade_vento = data['wind']['speed']
+        model = Clima(data)
         retorno = serializer.dump(model)
         service.add_history()
         return generate_response(200, '', 'tempo', retorno)
@@ -54,3 +42,37 @@ def historico_busca():
     serializer = HistoricoSerializer(many=True)
     retorno = serializer.dump(historicos)
     return generate_response(200, '', 'historicos', retorno)
+
+
+@api.route("/historypage", methods=['GET'])
+def history():
+    historicos = Historico.query.all()
+    serializer = HistoricoSerializer(many=True)
+    data = serializer.dump(historicos)
+    return render_template('history.html', history=data)
+
+
+@api.route("/", methods=['GET', 'POST'])
+def home():
+    if request.method.lower() == 'post':
+        service = ClimaService()
+        serializer = ClimaSerializer()
+        typ = request.form.get("search_type")
+        if typ == 'coord':
+            lat = request.form.get("lat")
+            lon = request.form.get("lon")
+            data = service.get_by_coord(lat, lon)
+        elif typ == 'code':
+            code = request.form.get("text")
+            data = service.get_by_code(code)
+        elif typ == 'zipcode':
+            zipcode = request.form.get("text")
+            data = service.get_by_zipcode(zipcode)
+        else:
+            city = request.form.get("text")
+            data = service.get_by_city(city)
+        if data is not None:
+            clima = Clima(data)
+            retorno = serializer.dump(clima)
+            return render_template('resultado.html', **retorno)
+    return render_template('home.html')

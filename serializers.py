@@ -1,4 +1,4 @@
-from flask_marshmallow import Marshmallow
+from flask_marshmallow import Marshmallow, fields
 
 from models import Clima, Historico
 
@@ -17,6 +17,8 @@ class ClimaSerializer(ma.Schema):
 
 
 class HistoricoSerializer(ma.Schema):
+    data_pesquisa = fields.fields.DateTime(format='%d/%m/%y %H:%M:%S')
+
     class Meta:
         model = Historico
-        fields = ['hora', 'termo_busca', 'tipo_busca']
+        fields = ['data_pesquisa', 'termo_busca', 'tipo_busca']

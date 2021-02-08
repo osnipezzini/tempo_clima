@@ -15,9 +15,24 @@ class Clima:
     cidade = ''
     cod_cidade = 0
 
+    def __init__(self, data=None):
+        if data is not None:
+            self.sensacao_termica = data['main']['feels_like']
+            self.temperatura = data['main']['temp']
+            self.temperatura_minima = data['main']['temp_min']
+            self.temperatura_maxima = data['main']['temp_max']
+            self.cidade = data['name']
+            self.pressao = data['main']['pressure']
+            self.umidade = data['main']['humidity']
+            self.latitude = data['coord']['lat']
+            self.longitude = data['coord']['lon']
+            self.cod_cidade = data['id']
+            self.visibilidade = data['visibility']
+            self.velocidade_vento = data['wind']['speed']
+
 
 class Historico(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    hora = db.Column(db.Time, default=datetime.now())
+    data_pesquisa = db.Column(db.DateTime, default=datetime.now())
     termo_busca = db.Column(db.String, default='')
     tipo_busca = db.Column(db.String, default='city')

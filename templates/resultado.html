@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Previsão encontrada</title>
+</head>
+<body>
+<div>
+    <div class="form-group">
+        <label for="txtCity">Nome da cidade</label>
+        <input type="text" id="txtCity" value="{{ cidade }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="txtCodeCity">Código da cidade</label>
+        <input type="text" id="txtCodeCity" value="{{ cod_cidade }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="txtLat">Latitude</label>
+        <input type="text" id="txtLat" value="{{ latitude }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="txtLon">Longitude</label>
+        <input type="text" id="txtLon" value="{{ longitude }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="txtPressure">Pressão atmosférica</label>
+        <input type="text" id="txtPressure" value="{{ pressao }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="txtThermalSensation">Sensação térmica</label>
+        <input type="text" id="txtThermalSensation" value="{{ sensacao_termica }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="txtTemperature">Temperatura</label>
+        <input type="text" id="txtTemperature" value="{{ temperatura }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="txtTemperatureMin">Temperatura mín</label>
+        <input type="text" id="txtTemperatureMin" value="{{ temperatura_minima }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="txtTemperatureMax">Temperatura máx.</label>
+        <input type="text" id="txtTemperatureMax" value="{{ temperatura_maxima }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="txtHumidity">Umidade</label>
+        <input type="text" id="txtHumidity" value="{{ umidade }}" readonly>
+    </div>
+    <input type="button" value="Voltar para a pesquisa" onclick="goToHome()">
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script>
+    function goToHome() {
+        location.href = location.href;
+    }
+</script>
+</html>
