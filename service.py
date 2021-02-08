@@ -3,7 +3,7 @@ from urllib import request
 
 from flask import current_app
 
-from config import API_KEY, LANG
+from config import API_KEY, LANG, LITERAL_SPACE
 from models import Historico
 
 
@@ -14,7 +14,7 @@ class ClimaService:
         self.search_term = ''
 
     def get_by_city(self, city):
-        url = self.URL_BASE + f'&q={city}'
+        url = self.URL_BASE + f'&q={city.replace(" ", LITERAL_SPACE)}'
         with request.urlopen(url) as api:
             data = json.loads(api.read().decode())
         return data
