@@ -59,7 +59,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BASEURI}}/buscar?zipcode=94040",
+					"raw": "{{BASEURI}}/buscar?zipcode=89037430",
 					"host": [
 						"{{BASEURI}}"
 					],
@@ -69,7 +69,7 @@
 					"query": [
 						{
 							"key": "zipcode",
-							"value": "94040"
+							"value": "89037430"
 						}
 					]
 				},
@@ -111,7 +111,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "{{BASEURI}}/historico",
+					"host": [
+						"{{BASEURI}}"
+					],
+					"path": [
+						"historico"
+					]
 				},
 				"description": "Ver histórico completo de pesquisas."
 			},
