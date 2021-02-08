@@ -1,9 +1,9 @@
 from urllib.error import HTTPError
 
-from flask import request, Blueprint, jsonify
+from flask import request, Blueprint
 
-from models import Clima
-from serializers import ClimaSerializer
+from models import Clima, Historico
+from serializers import ClimaSerializer, HistoricoSerializer
 from service import ClimaService
 from utils import generate_response
 
@@ -31,6 +31,7 @@ def buscar_clima():
         model.visibilidade = data['visibility']
         model.velocidade_vento = data['wind']['speed']
         retorno = serializer.dump(model)
+        service.add_history()
         return generate_response(200, '', 'tempo', retorno)
     except HTTPError as he:
         return generate_response(200, 'Dados não encontrados com o termo digitado')
@@ -38,4 +39,18 @@ def buscar_clima():
 
 @api.route("/historico", methods=["GET"])
 def historico_busca():
-    return generate_response(200, '')
+    args = request.args
+    if 'city' in args:
+        historicos = Historico.query.filter(tipo_busca='city').all()
+    elif 'code' in args:
+        historicos = Historico.query.filter(tipo_busca='code').all()
+    elif 'zipcode' in args:
+        historicos = Historico.query.filter(tipo_busca='zipcode').all()
+    elif 'coord' in args:
+        historicos = Historico.query.filter(tipo_busca='coord').all()
+    else:
+        historicos = Historico.query.all()
+
+    serializer = HistoricoSerializer(many=True)
+    retorno = serializer.dump(historicos)
+    return generate_response(200, '', 'historicos', retorno)

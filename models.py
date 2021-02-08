@@ -1,3 +1,7 @@
+from datetime import datetime
+
+from database import db
+
 
 class Clima:
     sensacao_termica = 0.0
@@ -11,3 +15,9 @@ class Clima:
     cidade = ''
     cod_cidade = 0
 
+
+class Historico(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    hora = db.Column(db.Time, default=datetime.now())
+    termo_busca = db.Column(db.String, default='')
+    tipo_busca = db.Column(db.String, default='city')
