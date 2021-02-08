@@ -17,4 +17,4 @@ python app.py run
 Junto aos arquivos do projeto, existe uma coleção do PostMan com as requisições de exemplo configuradas.
 
 
-O motivo escolhido para usar Flask foi simplesmente a simplidade para escrever aplicações web. Pensei no Django, mas faz um tempo que não mexo com ele, então achei melhor simplificar
+O motivo escolhido para usar Flask foi simplesmente a simplicidade para escrever aplicações web. Pensei no Django, mas faz um tempo que não mexo com ele, então achei melhor simplificar
